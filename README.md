@@ -31,7 +31,7 @@ the game (raceer.py) goes like so:
 [Race Execution]
     |                            
     v                   
-[Check Positions] <---> [Race Continuation? pos < 100%]
+[Calculate Positions] <---> [Race Continuation? pos < 100%]
     |                             |
     v                             v
 [End Race]        <--->  [Check Buzz Event?]
