@@ -33,7 +33,9 @@ the game (raceer.py) goes like so:
 [Check Positions] <---> [Race Continuation?]
     |                             |
     v                             v
-[End Race]             <--->  [Check Buzz
+[End Race]        <--->  [Check Buzz Event?]
+    |                             
+      ---->  Race Loop 
 ```
 
 
