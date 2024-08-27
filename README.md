@@ -31,14 +31,10 @@ the game (raceer.py) goes like this:
     |                             
     v
 [Race Execution] <------------------------------
-    |------------------------                   |
-    |                        |                  |
-    v                        v                  |
-<Buzz Button pressed?> -----------------------> |
-    |                <Position < 100% ?> -----> |
-    |                     |
-    v                     v
-    -----------------------
+    |                                           |
+    v                                           |
+<Position < 100% ?  OR  Buzz Button pressed?> --
+    |                        
     |                            
     v      
 [End Race] 
