@@ -15,8 +15,8 @@ the game (raceer.py) goes like this:
 [MQTT Setup]
     |
     v
-[Run Race Loop]   <-------------------------------
-    |                            
+[Run Race Loop]   <-----------------------------------
+    |                                                 |
     v           
 [Clear Event Queue]   
     |                         
@@ -33,16 +33,15 @@ the game (raceer.py) goes like this:
 [Race Execution] <------------------------------
     |                                           |
     v                                           |
-<Position < 100% ?  OR  Buzz Button pressed?> --
-    |                        
+<Position < 100% ?  OR  Buzz Button pressed?> --             
     |                            
     v      
 [End Race] 
     |                            
     v 
-[Celebrate winner 30s]
-    |                    
-      ---->  Restart Race Loop ------------>
+[Celebrate winner 30s]                                ^
+    |                                                 |
+      ---->  Restart Race Loop -----------------------
 ```
 
 
