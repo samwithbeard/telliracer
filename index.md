@@ -1,0 +1,8 @@
+# telliracer
+Am 31. August 2024 wird das Tellihochhaus erleuchtet. Auf zwei Hometrainer kann man die Lichter in den Büros der kantonalen Verwaltung ansteuern. 
+alle sind herzlich zu dem spektakulären Schabernack eingeladen. sobald es dunkel genug ist gehts los!
+
+come and play!
+
+<img src="https://github.com/user-attachments/assets/cb14113e-45d7-4f5d-a53e-ed9c31c6189a" width="50%">
+<img src="https://github.com/user-attachments/assets/a8e60afb-b0a5-477f-80c8-f8f5abd2c3c9" width="10%">
