@@ -30,13 +30,15 @@ the game (raceer.py) goes like this:
 [Countdown 3s]               
     |                             
     v
-[Race Execution] <--------
+[Race Execution] <------------------------------
+    |------------------------                   |
+    |                        |                  |
+    v                        v                  |
+<Buzz Button pressed?> -----------------------> |
+    |                <Position < 100% ?> -----> |
     |                     |
-    v                     |
-<Position < 100% ?>-------
-    |                     |
-    v                     |
-<Buzz Button pressed?> ---
+    v                     v
+    -----------------------
     |                            
     v      
 [End Race] 
