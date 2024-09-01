@@ -21,8 +21,44 @@ passw = "telli2456"
 user = "lichtspiel" #'telli'
 rpm1=0
 rpm2=0
+
+
+
+# Setup GPIO pins
+#GPIO.setmode(GPIO.BCM)
+sensor1_pin = 21
+sensor2_pin = 20
+buzz_button_pin=5
+led1_pin=6
+#GPIO.setup(sensor1_pin, GPIO.IN)
+#GPIO.setup(sensor2_pin, GPIO.IN)
+#GPIO.setup(buzz_button_pin, GPIO.IN)
+#GPIO.setup(led1_pin, GPIO.OUT)
+#GPIO.output(led1_pin, GPIO.HIGH)
+
+sensor1 = Button(sensor1_pin)
+sensor2 = Button(sensor2_pin)
+BUZZ_button = Button(buzz_button_pin, bounce_time=0.5)
+led = LED(led1_pin)
+led.on()
 print("rpm sensor.py waits 3s cause autostart...")
-time.sleep(3)
+time.sleep(5)
+# Variables to count pulses
+count1 = 0
+count2 = 0
+
+waiting =True
+while waiting:
+    counter =0
+    t = os.system('ping -c 1 '+ MQTT_BROKER)
+    if t < 1:
+        waiting=False
+        print("broker available")
+    else:
+        counter +=1
+        time.sleep(1)
+        if counter == 100000: # this will prevent an never ending loop, set to the number of tries you think it will require
+            waiting = False 
 
 def log_temperature():
     res = os.popen('vcgencmd measure_temp').readline()
@@ -32,7 +68,7 @@ def log_temperature():
 def temp_check():
     temp = log_temperature()
     send_message("raspi CPU temp "+str(int(temp)),MQTT_TOPIC_DEBUG)
-    print(f"Current CPU temperature: {temp}°C")
+    #print(f"Current CPU temperature: {temp}°C")
     if temp > 80.0:  # Threshold for warning
         print("Warning: CPU temperature is too high! wait..")
         while temp > 82.0:
@@ -53,8 +89,8 @@ def on_connect(client, userdata, flags, rc):
         print("Failed to connect, return code %d\n", rc)
 
 # Callback for when a message is received
-def on_message(client, userdata, msg):
-    print(f"Received message: '{msg.payload.decode()}' on topic '{msg.topic}'")
+#def on_message(client, userdata, msg):
+#    print(f"Received message: '{msg.payload.decode()}' on topic '{msg.topic}'")
 
 
 
@@ -66,7 +102,7 @@ client.username_pw_set(user, passw)
 
 # Assign the on_connect and on_message callbacks
 client.on_connect = on_connect
-client.on_message = on_message
+#client.on_message = on_message
 
 # Connect to the MQTT broker
 client.connect(MQTT_BROKER, MQTT_PORT, 60)
@@ -77,43 +113,22 @@ print("mqtt running")
 
 def send_message(message="activated",TOPIC=MQTT_TOPIC_P1):
         client.publish(TOPIC, message)
-        print(f"Published message: '{message}' to topic: '{TOPIC}'")
+        #print(f"Published message: '{message}' to topic: '{TOPIC}'")
 
-
-# Setup GPIO pins
-#GPIO.setmode(GPIO.BCM)
-sensor1_pin = 20
-sensor2_pin = 21
-buzz_button_pin=5
-led1_pin=6
-#GPIO.setup(sensor1_pin, GPIO.IN)
-#GPIO.setup(sensor2_pin, GPIO.IN)
-#GPIO.setup(buzz_button_pin, GPIO.IN)
-#GPIO.setup(led1_pin, GPIO.OUT)
-#GPIO.output(led1_pin, GPIO.HIGH)
-
-sensor1 = Button(sensor1_pin)
-sensor2 = Button(sensor2_pin)
-BUZZ_button = Button(buzz_button_pin)
-led = LED(led1_pin)
-led.on()
-# Variables to count pulses
-count1 = 0
-count2 = 0
 
 # Callback functions to count pulses
 def pulse1(channel):
     global count1
     led.on()
     count1 += 1
-    print("rpm "+str(int(rpm1))+" "+int(rpm1/100)*"0")
+    #print("rpm "+str(int(rpm1))+" "+int(rpm1/100)*"0")
     send_message("rpm "+str(int(rpm1))+" "+int(rpm1/100)*"0",MQTT_TOPIC_P1)
 
 def pulse2(channel):
     global count2
     led.on()
     count2 += 1
-    print("rpm "+str(int(rpm2))+" "+int(rpm2/100)*"0")
+    #print("rpm "+str(int(rpm2))+" "+int(rpm2/100)*"0")
     send_message("rpm "+str(int(rpm2))+" "+int(rpm2/100)*"0",MQTT_TOPIC_P2)
 
 def buzzz(channel):
@@ -134,9 +149,9 @@ def calculate_rpm(count, interval):
     return (count / interval) * 60
 
 try:
-    led.off()
+    led.on()
     while True:
-        led.on()
+        led.off()
         count1 = 0
         count2 = 0
         interval = 1  # Measure over one second
@@ -144,7 +159,7 @@ try:
         led.off()
         rpm1 = calculate_rpm(count1, interval)
         rpm2 = calculate_rpm(count2, interval)
-        print(f"RPM1: {rpm1}, RPM2: {rpm2}")
+        #print(f"RPM1: {rpm1}, RPM2: {rpm2}")
         temp_check()
         
 
