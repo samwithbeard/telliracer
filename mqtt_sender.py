@@ -7,9 +7,9 @@ MQTT_PORT = 1883  # Default port for MQTT
 MQTT_TOPIC_1 = "race/player1"
 MQTT_TOPIC_2 = "race/player2"
 MQTT_TOPIC_DATA ="race/data"
-KEY_PLAYER_1 = 'space'  # The key to trigger the publish event
+KEY_PLAYER_1 = '1'  # The key to trigger the publish event
 KEY_PLAYER_2 = '2'
-KEY_BUZZ = 'b'
+KEY_BUZZ = 'space'
 passw = 'telli2456'
 user = 'lichtspiel'
 print("---------------- MQTT SENDER ----------------")
