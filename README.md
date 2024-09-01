@@ -46,3 +46,6 @@ the game (raceer.py) goes like this:
 
 
 ![telli racer drawio](https://github.com/user-attachments/assets/ba74f221-df28-4278-8a12-5d36fd9a0b26)
+
+![image](https://github.com/user-attachments/assets/02f99a55-94e9-41f4-8498-388bbba5af91)
+
