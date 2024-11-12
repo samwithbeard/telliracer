@@ -1,4 +1,6 @@
 # telliracer
+[insta](https://www.instagram.com/stories/highlights/17916792884644910/?hl=en)
+
 Am 31. August 2024 wurde das Tellihochhaus erleuchtet. Auf zwei Hometrainer konnte man die Lichter in den Büros der kantonalen Verwaltung ansteuern. spektakulärer Schabernack:).
 
 Allows to play a race game on a set of home trainers initially on the tellitower in aarau.
